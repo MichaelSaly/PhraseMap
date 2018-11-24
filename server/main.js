@@ -31,6 +31,7 @@ main.use(function(req, res, next) {
 });
 
 main.post('/str-coords', (req, res) => {
+    console.log('here')
 
     let reqStringArr = req.body.phrase.split(' ')
 
