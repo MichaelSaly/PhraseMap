@@ -22,7 +22,7 @@ app.use('/requests', main)
 app.use(express.static(path.join(__dirname, 'dist/fyp')))
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/fyp/index.html')) 
+    res.sendFile(path.join(__dirname, 'dist/index.html')) 
 })
 
 // Set port
