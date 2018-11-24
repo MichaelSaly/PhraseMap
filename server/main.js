@@ -22,6 +22,13 @@ for(let i = 0; i < rangeOfY; i++) {
 fillWithSpiralIndexes()
 console.log('ready')
 
+main.use((req, res, next) => {
+    res.setheader("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+    next()
+})
+
 main.post('/str-coords', (req, res) => {
 
     let reqStringArr = req.body.phrase.split(' ')
