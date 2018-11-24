@@ -2,7 +2,7 @@
   "name": "fyp",
   "version": "0.0.0",
   "scripts": {
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "ng build --aot",
     "ng": "ng",
     "start": "node server",
     "build": "ng build",
