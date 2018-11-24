@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class WebService {
 
     // private baseURL = 'http://localhost:80/requests';
-    private baseURL = 'http://finalyrp.herokuapp.com/requests';
+    private baseURL = 'https://finalyrp.herokuapp.com/requests';
     
     private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
