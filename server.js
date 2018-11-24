@@ -19,10 +19,10 @@ const main = require('./server/main')
 app.use('/requests', main)
 
 // Angular DIST output folder
-app.use(express.static(path.join(__dirname, 'dist/fyp')))
+app.use(express.static(path.join(__dirname, 'dist')))
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/fyp/index.html')) 
+    res.sendFile(path.join(__dirname, 'dist/index.html')) 
 })
 
 // Set port
