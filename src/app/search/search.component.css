@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
+.main-container {
+    /* background-image: url(../../assets/bg.png); */
+    height: 100vh;
+    width: 100vw;
+    /* background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+.cc {
+    height: 100%;
+}
+
+.search-box-header {
+    padding-bottom: 20px;
+    color: white;
+}
+
+.search-box {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding-top: 46px;
+    padding-bottom: 27px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-box-shadow: 14px 14px 0px 0px rgba(0,0,0,0.03);
+    -moz-box-shadow: 14px 14px 0px 0px rgba(0,0,0,0.03);
+    box-shadow: 14px 14px 0px 0px rgba(0,0,0,0.03);
+}
+
+.search-box-inp {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    border-bottom: 0.8px solid white;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+input:focus{
+    outline: none;
+}
+
+.search-box-inp-button-container {
+    margin-top: 10px;
+}
+
+.search-box-inp-button {
+    color: white;
+}
+
+.spinner {
+    margin-top: 20px;
+    display: none;
+}

@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col-12 d-header d-flex align-items-center justify-content-center">
+            <img class="d-header-img" src="../../../assets/share_icon.png" alt="">
+        </div>
+        <div class="col-12 d-main">
+            <!-- <h5>Share this location!</h5> -->
+            <div class="d-main-rest d-flex align-items-center justify-content-center">
+                <p (mouseout)="resetCopyStatus()" matTooltip="{{ copyStatus }}" [matTooltipPosition]="'above'" (click)="copy()" class="inp">{{ link }}</p>
+            </div>
+        </div>
+        <div class="col-12 d-footer">
+            <div class="d-footer-content text-center">
+                <button (click)="close()" mat-button color="primary">OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>

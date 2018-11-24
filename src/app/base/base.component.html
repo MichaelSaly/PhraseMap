@@ -1,0 +1,41 @@
+<div class="c">
+<nav class="navbar navbar-light fixed-top">
+    <a class="navbar-brand" href="#">iTitle</a>
+    <button (click)="openHelpDialog()" mat-icon-button><mat-icon class="navbar-help-icon">help</mat-icon></button>
+</nav>
+
+<app-search 
+    [@TriggerAppearSearch]="views[1]"
+    (search)="onSearch($event)" 
+    class="pos">
+</app-search>
+
+<app-map
+    [@TriggerAppearMap]="views[2]"
+    [input]="core"
+    class="pos">
+</app-map>
+
+<div *ngIf="topArrow.visible" class="arrow-container fixed-top">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-1 top-arrow-mini-container text-center">
+                <p (click)="onArrowTopClick()" class="top-arrow-icon"><i class="fas fa-chevron-up"></i></p>
+                <p (click)="onArrowTopClick()" class="top-arrow-text">{{ topArrow.text }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="bottomArrow.visible" class="arrow-container fixed-bottom">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-1 bottom-arrow-mini-container text-center" [@ArrowTrigger]="stateDownArrow" (@ArrowTrigger.done)="animate()">
+                <p (click)="onArrowBottomClick()" class="bottom-arrow-text">{{ bottomArrow.text }}</p>
+                <p (click)="onArrowBottomClick()" class="bottom-arrow-icon"><i class="fas fa-chevron-down"></i></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,20 @@
+<div class="container-fluid main-container" id="main-container">
+    <div class="row cc justify-content-center align-items-center">
+        <div class="col-12 search-box-container text-center">
+            <div class="row">
+                <div class="col-4"></div>
+
+                <div class="col-4 search-box" [@ShakeTrigger]='shakeState'>
+                    <input autofocus (keyup)="onKeyUp($event)" [(ngModel)]="input" (focus)="onSearchFocus()" (blur)="onSearchBlur()" class="search-box-inp" type="text" placeholder="{{ placeholder }}">
+                    <button id="iconBeforeClick" (click)="onSearchButtonClick()" mat-icon-button class="search-box-inp-button-container">
+                        <mat-icon class="search-box-inp-button">search</mat-icon>
+                    </button>
+                    <mat-progress-spinner id="iconAfterClick" class="spinner ml-auto mr-auto" [diameter]='30' [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
+                </div>
+
+                <!-- <div class="col-4"></div> -->
+            </div>
+        </div>
+    </div>
+
+</div>

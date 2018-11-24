@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row no-gutters d-flex justify-content-center">
+
+        <div class="col-11">
+            <div class="map-container">
+  
+                <div class="map-container-map" [@TriggerMap]="mapState">
+                    <agm-map [zoom]='zoom' [latitude]='core.latitude' [longitude]='core.longitude' (mapClick)="onMapClick($event)">
+                        <agm-marker *ngIf="core.phrase" [latitude]='core.latitude' [longitude]='core.longitude'></agm-marker>
+                    </agm-map>
+                </div>
+                <div class="map-container-info" [@TriggerInfo]="mapState">
+                    <div class="spinner-container d-flex align-items-center justify-content-center" *ngIf="load">
+                        <mat-progress-spinner class="spinner" [diameter]='80' [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
+                    </div>
+                    <div class="row" *ngIf="!load">
+                        <div class="col-3" *ngIf="core.phrase">
+                            <h2>{{ core.phrase }}</h2>
+                            <p>[ {{ core.phrase }} ]</p>
+                        </div>
+                        <div class="col-3" *ngIf="core.phrase">
+                            <h5>coordinates</h5>
+                            <p>{{ core.longitude }}, {{ core.latitude }}</p>
+                        </div>
+                        <div class="col-3" *ngIf="core.phrase">
+                            <button (click)="openLinkDialog()">Get link</button>
+                        </div>
+                        <div class="col-3" *ngIf="core.phrase && core.address">
+                            <h5>address</h5>
+                            <p>{{ core.address.part1 }}</p>
+                            <p>{{ core.address.part2 }}<br>{{ core.address.part3 }}<br>{{ core.address.part4 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,61 @@
+.c {
+    background-image: url(../../assets/bg.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;;
+}
+
+.navbar-brand {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar {
+    height: 60px;
+}
+
+.navbar-help-icon {
+    color: white;
+}
+
+.pos {
+    position: absolute;
+}
+
+.bottom-arrow-icon {
+    color: white;
+    font-size: 25px;
+    padding-bottom: 0;
+}
+
+.bottom-arrow-text {
+    color: white;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.bottom-arrow-mini-container {
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.top-arrow-icon {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+.top-arrow-text {
+    color: white;
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.top-arrow-mini-container {
+    padding-top: 10px;
+    cursor: pointer;
+}
