@@ -71,7 +71,7 @@ export class MapComponent implements OnInit, OnChanges {
         if(change.firstChange == false && change.currentValue != undefined) {
             this.mapState = "second"
             this.core = this.input
-            this.zoom = 12
+            this.zoom = 18
             // this.findAddressByCoordinates()
         }
     }
@@ -94,7 +94,7 @@ export class MapComponent implements OnInit, OnChanges {
             this.mapState = "second"
             this.load = false
             if(res['error'] == 0) {
-                this.zoom = 12
+                this.zoom = 18
                 this.core = res['core']
             }
         })

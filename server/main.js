@@ -8,6 +8,7 @@ const ignoreWords = fs.readFileSync('server/ignore.txt', 'utf-8').split('\n')
 const rangeOfX = 5241
 const rangeOfY = 3894
 const numberOfSquares = rangeOfX * rangeOfY
+const numberOfSqauresPrime = 20408459
 
 const numberOfWords = words.length
 
@@ -22,16 +23,15 @@ for(let i = 0; i < rangeOfY; i++) {
 fillWithSpiralIndexes()
 console.log('ready')
 
-main.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
+// main.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", '*');
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//     next();
+// });
 
 main.post('/str-coords', (req, res) => {
-    console.log('here')
 
     let reqStringArr = req.body.phrase.split(' ')
 
@@ -50,7 +50,7 @@ main.post('/str-coords', (req, res) => {
     }
     
     let key = sum
-    let indexSpiral = key % numberOfSquares // index in the spiral
+    let indexSpiral = key % numberOfSqauresPrime // index in the spiral
 
     let realIndex = getRealIndex(indexSpiral) // find index (i, j) of indexspiral from the mapArray
 
@@ -91,18 +91,22 @@ main.post('/coords-str', (req, res) => {
         if(index >= 100) {
             index = 0
             indexSpiral++
+            console.log('inc')
         }
 
     }
 
     let strArr = [ words[wordIndexes.a], words[wordIndexes.b] ] // fill array of the indexes
 
+    let properLongitude = (realX + 5353) / 1000 * -1 // add longitude constraints
+    let properLatitude = (realY + 51478) / 1000 // add latitude constaints
+
     res.status(200).json({ 
         'error': 0,
         'core': {
             'phrase': strArr.toString().replace(',', ' '),
-            'longitude': longitude.toFixed(3),
-            'latitude': latitude.toFixed(2),
+            'longitude': properLongitude,
+            'latitude': properLatitude,
             'escape': escape(strArr.toString().replace(',', ' '))
         }
     })
@@ -207,8 +211,7 @@ function genKey(val) {
 
     while(true) {
         r = Math.floor(Math.random()*(max-min+1)+min)
-
-        if(r % numberOfSquares == val) {
+        if(r % numberOfSqauresPrime == val) {
             return r
         }
     }

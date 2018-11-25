@@ -6,7 +6,15 @@
   
                 <div class="map-container-map" [@TriggerMap]="mapState">
                     <agm-map [zoom]='zoom' [latitude]='core.latitude' [longitude]='core.longitude' (mapClick)="onMapClick($event)">
-                        <agm-marker *ngIf="core.phrase" [latitude]='core.latitude' [longitude]='core.longitude'></agm-marker>
+                        <!-- <agm-marker *ngIf="core.phrase" [latitude]='core.latitude' [longitude]='core.longitude'></agm-marker> -->
+                        <agm-rectangle
+                            [fillColor]="'#392c40'"
+                            [north]='core.latitude+0.0005'
+                            [south]='core.latitude-0.0005'
+                            [east]='core.longitude+0.0005'
+                            [west]='core.longitude-0.0005'
+                            [clickable]='false'></agm-rectangle>
+
                     </agm-map>
                 </div>
                 <div class="map-container-info" [@TriggerInfo]="mapState">
