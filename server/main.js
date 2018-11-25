@@ -1,6 +1,5 @@
 const express = require('express')
 const main = express.Router()
-// const words = require('an-array-of-english-words') // l = 274,918
 const fs = require('fs')
 const words = fs.readFileSync('server/words.txt', 'utf-8').split('\n')
 const ignoreWords = fs.readFileSync('server/ignore.txt', 'utf-8').split('\n')
@@ -22,14 +21,6 @@ for(let i = 0; i < rangeOfY; i++) {
 
 fillWithSpiralIndexes()
 console.log('ready')
-
-// main.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", '*');
-//     res.header("Access-Control-Allow-Credentials", true);
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//     next();
-// });
 
 main.post('/str-coords', (req, res) => {
 
@@ -89,13 +80,13 @@ main.post('/coords-str', (req, res) => {
         wordIndexes = generateWordIndexesMult(key) // generate word indexes from key
         error = wordIndexes.error // set error to error status
         if(index >= 100) {
+            console.log('upping indexSpiral')
             index = 0
             indexSpiral++
-            console.log('inc')
         }
 
     }
-
+    
     let strArr = [ words[wordIndexes.a], words[wordIndexes.b] ] // fill array of the indexes
 
     let properLongitude = (realX + 5353) / 1000 * -1 // add longitude constraints
@@ -110,27 +101,6 @@ main.post('/coords-str', (req, res) => {
             'escape': escape(strArr.toString().replace(',', ' '))
         }
     })
-
-
-    // let key = genKey(indexSpiral)
-    // console.log('key generated: ' + key)
-
-    // let sum = key
-    // wordIndexes = generateWordIndexesMult(sum)
-    // console.log(wordIndexes)
-    
-    // let strArr = []
-    // if(wordIndexes.error == 0) {
-        
-    //     strArr.push(words[wordIndexes.a])
-    //     strArr.push(words[wordIndexes.b])
-    //     console.log('string array: ' + strArr.toString())
-    //     res.status(200).json({ 'res': strArr.toString() })
-    // }
-    // else {
-    //     console.log('failed')
-    //     res.status(200).json({ 'res': 'failed' })
-    // }
 
 })
 
@@ -196,11 +166,10 @@ function generateWordIndexesMult(sum) {
     let index = 0
     while(index < 1000000) {
         let i = Math.floor(Math.random()*(numberOfWords-1+1)+1)
-        if(sum % i == 0 && i <= numberOfWords && sum/i <= numberOfWords)
+        if(sum % i == 0 && sum/i <= numberOfWords)
             return { 'a': i, 'b': sum/i, 'error': false }
         index++
     }
-
     return { 'error': true }
 
 }

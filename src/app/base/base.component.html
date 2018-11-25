@@ -19,7 +19,7 @@
 <div *ngIf="topArrow.visible" class="arrow-container fixed-top">
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-1 top-arrow-mini-container text-center">
+            <div class="col-4 top-arrow-mini-container text-center">
                 <p (click)="onArrowTopClick()" class="top-arrow-icon"><i class="fas fa-chevron-up"></i></p>
                 <p (click)="onArrowTopClick()" class="top-arrow-text">{{ topArrow.text }}</p>
             </div>
@@ -30,7 +30,7 @@
 <div *ngIf="bottomArrow.visible" class="arrow-container fixed-bottom">
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <div class="col-1 bottom-arrow-mini-container text-center" [@ArrowTrigger]="stateDownArrow" (@ArrowTrigger.done)="animate()">
+            <div class="col-4 bottom-arrow-mini-container text-center" [@ArrowTrigger]="stateDownArrow" (@ArrowTrigger.done)="animate()">
                 <p (click)="onArrowBottomClick()" class="bottom-arrow-text">{{ bottomArrow.text }}</p>
                 <p (click)="onArrowBottomClick()" class="bottom-arrow-icon"><i class="fas fa-chevron-down"></i></p>
             </div>
