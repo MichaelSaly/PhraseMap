@@ -1,18 +1,29 @@
 <div class="container-fluid">
-    <div class="row no-gutters">
-        <div class="col-12 d-header d-flex align-items-center justify-content-center">
-            <img class="d-header-img" src="../../../assets/error_icon2.png" alt="">
+
+    <div class="close-container row d-flex justify-content-end no-gutters">
+        <div class="col-1 text-right">
+                <mat-icon (click)='close()' class="icon">close</mat-icon>
         </div>
-        <div class="col-12 d-main">
-            <h5>There seems to be an issue :(</h5>
-            <p class="par">
-                {{ mainText }}
-            </p>
+    </div>
+    
+    <div class="row mainrow no-gutters">
+        <div class="col-5 left-container">
+            <h2 class="text-uppercase">Welcome to Map!</h2>
+            <h3 class="text-uppercase">Here is an introduction</h3>
         </div>
-        <div class="col-12 d-footer">
-            <div class="d-footer-content text-center">
-                <button (click)="close()" mat-button color="primary">OK</button>
+
+        <div class="col-7 right-container">
+            <div class="mainrow row no-gutters">
+                <div class="col-12 top">
+                    <p><span class="fst">H</span>ello, and welcome to Map! </p>
+                    <p>If this is your first time visiting, don't worry - there isn't too much to learn. Basically there are two main functions of this tool; search for a point on the map using a sentence or phrase, and also generating a sentence when clicking on the map.</p>
+                    <p>By clicking on the map, you are generating two key words, that can be used among a set of 'connecting' words to construct a memorable sentence. Furthermore, when searching for this sentence, the resulting location will be the one you had clicked on previously!</p>
+                </div>
+                <div class="col-12 bottom">
+                    <p>Hello</p>
+                </div>
             </div>
         </div>
     </div>
+
 </div>

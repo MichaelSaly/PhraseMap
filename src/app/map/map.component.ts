@@ -39,6 +39,7 @@ declare var google: any;
 
             transition('def => second', animate('200ms 500ms ease-in')),
         ]),
+
     ]
 
 })
@@ -102,6 +103,7 @@ export class MapComponent implements OnInit, OnChanges {
     }
 
     onMapClick(evt) {
+
 
         if(evt.coords.lng > -5.353975449429186 || evt.coords.lng < -10.594453965054186 || evt.coords.lat > 55.37186727173801 || evt.coords.lat < 51.47826433287424) {
             this.openDialog(3)

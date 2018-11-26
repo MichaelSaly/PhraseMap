@@ -1,7 +1,7 @@
 const express = require('express')
 const main = express.Router()
 const fs = require('fs')
-const words = fs.readFileSync('server/words.txt', 'utf-8').split('\n')
+const words = fs.readFileSync('server/words_mixed.txt', 'utf-8').split('\n')
 const ignoreWords = fs.readFileSync('server/ignore.txt', 'utf-8').split('\n')
 
 const rangeOfX = 5241
