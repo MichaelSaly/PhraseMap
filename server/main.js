@@ -26,10 +26,16 @@ main.post('/str-coords', (req, res) => {
 
     let reqStringArr = req.body.phrase.split(' ')
 
-    let sum = 1
+    let key = 1, lookingFor = 1, temp = 0
     for(let i = 0; i < reqStringArr.length; i++) {
-        if(words.indexOf(reqStringArr[i]) != -1) {
-            sum *= words.indexOf(reqStringArr[i])
+        if(words.indexOf(reqStringArr[i]) != -1) { // if its in the dictionary
+            if(lookingFor == 1 && reqStringArr[i].length > 3) {
+                lookingFor = 2
+                key = words.indexOf(reqStringArr[i])
+            }
+            else if(lookingFor == 2 && reqStringArr[i].length > 3) {
+                temp = words.indexOf(reqStringArr[i])
+            }
         }
         else if(ignoreWords.indexOf(reqStringArr[i]) != -1) {
 
@@ -37,10 +43,10 @@ main.post('/str-coords', (req, res) => {
         else {
             res.status(200).json({ 'error': 1 })
         }
-        
     }
-    
-    let key = sum
+
+    key = key * temp
+
     let indexSpiral = key % numberOfSqauresPrime // index in the spiral
 
     let realIndex = getRealIndex(indexSpiral) // find index (i, j) of indexspiral from the mapArray
