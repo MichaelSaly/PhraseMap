@@ -43,6 +43,11 @@ main.post('/str-coords', (req, res) => {
         keywords = [ keywords[0], keywords[keywords.length-1] ]
     }
 
+    if(!words.includes(keywords[0]) || !words.includes(keywords[1])) {
+        res.status(200).json({ 'error': 1 })
+        return
+    }
+
     // if(keywords[0] == keywords[1]) {
     //     res.status(200).json({ 'error': 1 })
     // }
