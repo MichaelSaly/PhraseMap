@@ -26,12 +26,12 @@ main.post('/str-coords', (req, res) => {
 
     let reqStringArr = req.body.phrase.split(' ')
 
-    reqStringArr.forEach(e => {
-        if(!words.includes(e) && !ignoreWords.includes(e)) {
-            res.status(200).json({ 'error': 1 })
-            return
-        }
-    });
+    // reqStringArr.forEach(e => {
+    //     if(!words.includes(e) && !ignoreWords.includes(e)) {
+    //         res.status(200).json({ 'error': 1 })
+    //         return
+    //     }
+    // });
 
     // if((!words.includes(keywords[0]) || !words.includes(keywords[1])) && (!ignoreWords.includes(keywords[0]) || !ignoreWords.includes(keywords[1]))) {
     //     res.status(200).json({ 'error': 1 })
