@@ -1,12 +1,13 @@
 <div class="c">
 <nav class="navbar navbar-light fixed-top">
-    <a class="navbar-brand" href="#">MAP</a>
+    <a class="navbar-brand" href="#"><img src="../../assets/logo.png" alt=""> PhraseMap</a>
     <button (click)="openHelpDialog()" mat-icon-button><mat-icon class="navbar-help-icon">help</mat-icon></button>
 </nav>
 
 <app-search 
     [@TriggerAppearSearch]="views[1]"
     (search)="onSearch($event)" 
+    (loc)="onLoc($event)" 
     class="pos">
 </app-search>
 

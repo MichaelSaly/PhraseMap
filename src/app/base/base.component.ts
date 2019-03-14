@@ -3,6 +3,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
 import { ActivatedRoute } from "@angular/router";
 import { HelpDialogComponent } from '.././help-dialog/help-dialog.component'
 import { MatDialog } from '@angular/material'
+import { CookieService } from 'ngx-cookie-service';
 
 import { Core } from '../objects/core'
 
@@ -93,7 +94,7 @@ export class BaseComponent implements OnInit {
 
     stateDownArrow = 'default'
 
-    constructor(private route: ActivatedRoute, private dialog: MatDialog) { }
+    constructor(private route: ActivatedRoute, private dialog: MatDialog, private cookieService: CookieService) { }
 
     ngOnInit() {
 
@@ -105,7 +106,11 @@ export class BaseComponent implements OnInit {
 
         this.setArrows(this.activeView)
 
-        // this.openHelpDialog()
+        let cookieExists: boolean = this.cookieService.check('first_time');
+        if(!cookieExists) {
+            this.cookieService.set( 'first_time', '1' );
+            this.openHelpDialog()
+        }
         
     }
 
@@ -124,6 +129,11 @@ export class BaseComponent implements OnInit {
         this.changeToView(2)
         this.core = evt
 
+    }
+
+    onLoc(evt) {
+        this.changeToView(2);
+        this.core = evt;
     }
 
     changeToView(to) {

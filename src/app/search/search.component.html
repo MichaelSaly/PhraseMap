@@ -5,9 +5,12 @@
 
                 <div class="col-11 col-md-4 search-box" [@ShakeTrigger]='shakeState'>
                     <input autofocus (keyup)="onKeyUp($event)" [(ngModel)]="input" (focus)="onSearchFocus()" (blur)="onSearchBlur()" class="search-box-inp" type="text" placeholder="{{ placeholder }}">
-                    <button id="iconBeforeClick" (click)="onSearchButtonClick()" mat-icon-button class="search-box-inp-button-container">
-                        <mat-icon class="search-box-inp-button">search</mat-icon>
-                    </button>
+                    <div id="iconBeforeClick">
+                        <button  (click)="onSearchButtonClick()" mat-icon-button class="search-box-inp-button-container">
+                            <mat-icon class="search-box-inp-button">search</mat-icon>
+                        </button>
+                        <span class="or">or</span> <button (click)="searchByLocation()" mat-flat-button>Get your location's phrase</button>
+                    </div>
                     <mat-progress-spinner id="iconAfterClick" class="spinner ml-auto mr-auto" [diameter]='30' [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
                 </div>
 

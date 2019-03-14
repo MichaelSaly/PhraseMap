@@ -5,39 +5,59 @@
             <div class="map-container">
   
                 <div class="map-container-map" [@TriggerMap]="mapState">
-                    <agm-map [zoom]='zoom' [latitude]='core.latitude' [longitude]='core.longitude' (mapClick)="onMapClick($event)">
-                        <!-- <agm-marker *ngIf="core.phrase" [latitude]='core.latitude' [longitude]='core.longitude'></agm-marker> -->
-                        <agm-rectangle
-                            [fillColor]="'#392c40'"
-                            [north]='core.latitude+0.0005'
-                            [south]='core.latitude-0.0005'
-                            [east]='core.longitude+0.0005'
-                            [west]='core.longitude-0.0005'
-                            [clickable]='false'></agm-rectangle>
+                    <div class="spinner-container d-flex align-items-center justify-content-center" *ngIf="load">
+                        <mat-progress-spinner class="spinner" [diameter]='180' [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
+                    </div>
+                        <agm-map [zoom]='zoom' [latitude]='core.latitude' [longitude]='core.longitude' (mapClick)="onMapClick($event)">
+                            <agm-rectangle
+                                [fillColor]="'#392c40'"
+                                [north]='core.latitude+0.0005'
+                                [south]='core.latitude-0.0005'
+                                [east]='core.longitude+0.0005'
+                                [west]='core.longitude-0.0005'
+                                [clickable]='false'></agm-rectangle>
 
-                    </agm-map>
+                        </agm-map>
                 </div>
                 <div class="map-container-info" [@TriggerInfo]="mapState">
-                    <div class="spinner-container d-flex align-items-center justify-content-center" *ngIf="load">
-                        <mat-progress-spinner class="spinner" [diameter]='80' [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
-                    </div>
-                    <div class="row" *ngIf="!load">
-                        <div class="col-3" *ngIf="core.phrase">
-                            <h2>{{ core.phrase }}</h2>
-                            <p>[ {{ core.phrase }} ]</p>
+                    <div class="row h-100" *ngIf="!load">
+                        <div class="col-12 minimize d-flex justify-content-center">
+                            <div (click)="minimize()" class="top-buttons d-flex justify-content-center">
+                                <i class="far fa-window-minimize"></i>
+                            </div>
                         </div>
-                        <div class="col-3" *ngIf="core.phrase">
-                            <h5>coordinates</h5>
-                            <p>{{ core.longitude }}, {{ core.latitude }}</p>
+
+
+                        <div class="col-12" id="inf">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <p *ngIf="shouldShow() == true" class="mb-0">Your phrase is:</p>
+                                    <h2 class="mt-0 mb-0"><i class="fas fa-quote-left mr-3"></i> {{ core.phrase }} <i class="fas fa-quote-right ml-3"></i></h2>
+                                    <p *ngIf="shouldShow() == true" class="reg">Not happy with your current phrase? <span class="reg-gen" (click)="regenerate()">Generate another</span> or <span (click)="openHelpDialog()" class="reg-gen">show guidelines</span></p>
+                                </div>
+                                
+                                <div class="col-12 core-container d-flex justify-content-center align-items-center" *ngIf="shouldShow() == true">
+
+                                    <button (click)="onClickQueue(-1)" mat-icon-button matTooltip="Add word to phrase" [matTooltipPosition]="'above'"><mat-icon>add_circle_outline</mat-icon></button>
+
+                                    <div *ngFor="let word of wordQueue; let i = index">
+                                        <input [ngStyle]="{ 'background-color': word.base == true ? '#f2f2f2' : 'transparent' }" [ngClass]="{ 'core-error': word.error == true, 'core-noerror': word.error == false }" (blur)="validateQueue()" type="text" [(ngModel)]="word.word" value="{{ word.word }}" class="core">
+                                        <button (click)="onClickQueue(i)" mat-icon-button matTooltip="Add word to phrase" [matTooltipPosition]="'above'"><mat-icon>add_circle_outline</mat-icon></button>
+                                    </div>
+
+                                    <button (click)="validateQueue()" class="check-button" [ngClass]="{ 'check-button': wordQueueCorrect == true, 'cross-button': wordQueueCorrect == false }" mat-icon-button matTooltip="Validate phrase" [matTooltipPosition]="'above'"><mat-icon class="check-button-ico">{{ wordQueueCorrect ? 'check' : 'close' }}</mat-icon></button>
+
+                                </div>
+
+                                <div class="col-2"></div>
+
+                                <div class="col-10">
+                                    <p class="error-text" *ngFor="let e of wordQueueErrors">{{ e }}</p>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="col-3" *ngIf="core.phrase">
-                            <button (click)="openLinkDialog()">Get link</button>
-                        </div>
-                        <div class="col-3" *ngIf="core.phrase && core.address">
-                            <h5>address</h5>
-                            <p>{{ core.address.part1 }}</p>
-                            <p>{{ core.address.part2 }}<br>{{ core.address.part3 }}<br>{{ core.address.part4 }}</p>
-                        </div>
+
                     </div>
                 </div>
             </div>

@@ -1,23 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,600,700');
 
 .container-fluid {
-    /* background-image: url(../../assets/bg_plain.png); */
     height: 78vh;
     width: 100vw;
-    /* background-position: center; */
-    /* background-size: cover; */
-    /* background-repeat: no-repeat; */
     padding: 0;
 }
 
 agm-map {
+    z-index: 2;
     height: 100%;
     width: 100%;
     box-shadow: 0 1px 0 0 #F6F7FB inset, 0 -1px 0 0 #E0E5E1 inset, 0 -2px 0 0 #EBEBED inset, 0 -3px 0 0 #F4F4F6 inset;
 }
 
 .map-container {
-    /* margin-top: 10vh; */
     height: 78vh;
     -webkit-box-shadow: 7px 7px 34px -12px rgba(0,0,0,0.61);
     -moz-box-shadow: 7px 7px 34px -12px rgba(0,0,0,0.61);
@@ -28,10 +24,52 @@ agm-map {
     height: 100%;
 }
 
+.minimize {
+    margin-top: -32px;
+    color: #1d2437;
+    opacity: 0.6;
+    font-size: 30px;
+    /* padding-right: 100px; */
+}
+
+.core-phrase {
+    padding-top: 20px;
+    padding-left: 40px;
+    /* text-transform: capitalize; */
+    font-family: 'Raleway', sans-serif;
+}
+
+.core-phrase h2 {
+    color: #1d2437;
+}
+
+.descr {
+    font-size: 13px;
+    font-style: italic;
+    color: rgb(121, 121, 121);
+}
+
+.descr span {
+    font-weight: bold;
+    color: #1d2437;
+}
+
+.top-buttons {
+    /* width: 60px; */
+    background-color: transparent;
+    /* font-size: 30px; */
+}
+img {
+    height: 3px;
+}
+
+.search-box-inp-button {
+    font-size: 30px;
+}
+
 .map-container-info {
     height: 0%;
     background-color: white;
-
     font-family: 'Raleway', sans-serif;
 }
 
@@ -41,6 +79,79 @@ agm-map {
 }
 
 .spinner-container {
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
     width: 100%;
+    height: 100%;
+}
+
+.core {
+    margin: 8px;
+    font-size: 16px;
+    width: 110px;
+    padding: 9px 0px;
+    text-align: center;
+    height: 45px;
+    border: 1px solid #888888;
+}
+
+.core-container {
+    height: 100%;
+}
+
+.core-ico {
+    font-size: 20px;
+}
+
+.check-button {
+    color: green;
+}
+
+.cross-button {
+    color: red;
+}
+
+.check-button-ico {
+    font-size: 50px;
+}
+
+.core-error {
+    border-color: red;
+    /* background-color: #d6b4b4; */
+}
+
+.core-noerror {
+    border-color: #888888;
+    /* background-color: transparent; */
+}
+
+.error-text {
+    color: red;
+    margin-bottom: 0;
+}
+
+.reg {
+    font-size: 12.5px;
+    margin-bottom: 0;
+}
+
+.reg-gen {
+    text-decoration: underline;
+}
+
+.reg-gen:hover {
+    cursor: pointer;
+}
+
+.search-box-inp {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    border-bottom: 0.8px solid white;
+    color: white;
+    font-family: 'Raleway', sans-serif;
 }

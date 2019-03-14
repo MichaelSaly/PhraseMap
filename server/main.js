@@ -20,32 +20,37 @@ for(let i = 0; i < rangeOfY; i++) {
 }
 
 fillWithSpiralIndexes()
-console.log('ready')
+console.log("ready")
 
 main.post('/str-coords', (req, res) => {
 
     let reqStringArr = req.body.phrase.split(' ')
 
-    let key = 1, lookingFor = 1, temp = 0
-    for(let i = 0; i < reqStringArr.length; i++) {
-        if(words.indexOf(reqStringArr[i]) != -1) { // if its in the dictionary
-            if(lookingFor == 1 && reqStringArr[i].length > 3) {
-                lookingFor = 2
-                key = words.indexOf(reqStringArr[i])
-            }
-            else if(lookingFor == 2 && reqStringArr[i].length > 3) {
-                temp = words.indexOf(reqStringArr[i])
-            }
-        }
-        else if(ignoreWords.indexOf(reqStringArr[i]) != -1) {
-
-        }
-        else {
+    reqStringArr.forEach(e => {
+        if(!words.includes(e) && !ignoreWords.includes(e)) {
             res.status(200).json({ 'error': 1 })
+            return
         }
+    });
+
+    // if((!words.includes(keywords[0]) || !words.includes(keywords[1])) && (!ignoreWords.includes(keywords[0]) || !ignoreWords.includes(keywords[1]))) {
+    //     res.status(200).json({ 'error': 1 })
+    // }
+
+    let keywords = reqStringArr.filter(e => { return e.length > 3 })
+    
+    if(keywords.length > 2) {
+        keywords = [ keywords[0], keywords[keywords.length-1] ]
     }
 
-    key = key * temp
+    // if(keywords[0] == keywords[1]) {
+    //     res.status(200).json({ 'error': 1 })
+    // }
+
+    console.log("Received request for: " + keywords.toString())
+
+
+    let key = words.indexOf(keywords[0]) * words.indexOf(keywords[1]);
 
     let indexSpiral = key % numberOfSqauresPrime // index in the spiral
 
@@ -54,13 +59,17 @@ main.post('/str-coords', (req, res) => {
     let x = (parseInt(realIndex.realX) + 5353) / 1000 * -1 // add longitude constraints
     let y = (parseInt(realIndex.realY) + 51478) / 1000 // add latitude constaints
 
+    console.log("This results in coordinates: x:" + x + ", y:" + y)
+
     res.status(200).json({
         'error': 0,
         'core': {
             'phrase': req.body.phrase,
+            'keywords': keywords.toString(),
             'longitude': x,
             'latitude': y,
-            'escape': escape(req.body.phrase)
+            'escape': escape(req.body.phrase),
+            'show': false
         }
     })
 
@@ -70,6 +79,8 @@ main.post('/coords-str', (req, res) => {
 
     let longitude = req.body.longitude // request long
     let latitude = req.body.latitude // request lat
+
+    console.log("Received request for: " + longitude + ", " + latitude)
 
     let realX = Math.round(longitude * -1 * 1000) - 5353 // remove x constraints
     let realY = Math.round(latitude * 1000) - 51478 // remove y constraints
@@ -98,13 +109,19 @@ main.post('/coords-str', (req, res) => {
     let properLongitude = (realX + 5353) / 1000 * -1 // add longitude constraints
     let properLatitude = (realY + 51478) / 1000 // add latitude constaints
 
+    console.log("This results in keywords: " + strArr.toString())
+
     res.status(200).json({ 
         'error': 0,
         'core': {
             'phrase': strArr.toString().replace(',', ' '),
+            'keywords': strArr.toString(),
             'longitude': properLongitude,
             'latitude': properLatitude,
-            'escape': escape(strArr.toString().replace(',', ' '))
+            'escape': escape(strArr.toString().replace(',', ' ')),
+            'word1': words[wordIndexes.a],
+            'word2': words[wordIndexes.b],
+            'show': true
         }
     })
 
@@ -126,7 +143,7 @@ function getRealIndex(index) {
 
 function fillWithSpiralIndexes() {
 
-    let index = numberOfSquares -1
+    let index = numberOfSqauresPrime -1
  
     let rowStart = 0
     let rowLength = mapArray.length-1

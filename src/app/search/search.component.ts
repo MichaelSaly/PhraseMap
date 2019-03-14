@@ -30,6 +30,7 @@ import { Core } from '../objects/core'
 export class SearchComponent implements OnInit {
 
     @Output() search = new EventEmitter<any>()
+    @Output() loc = new EventEmitter<any>()
     // @Input() active
 
     placeholder = "Enter sentence or phrase..."
@@ -67,6 +68,22 @@ export class SearchComponent implements OnInit {
         else {
             this.openDialog(1)
         }
+    }
+
+    searchByLocation() {
+        this.swapButtons()
+        navigator.geolocation.getCurrentPosition(pos => {
+            this.webService.onChooseLocation(pos.coords.longitude, pos.coords.latitude).subscribe(res => {
+                this.swapButtons()
+                if(res["error"] == 0) {
+                    this.loc.emit(res['core']);
+                }
+                else {
+                    this.openDialog(2)
+                }
+            })
+            // this.loc.emit(pos.coords)
+        })
     }
 
     shake() {
