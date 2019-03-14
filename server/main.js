@@ -38,6 +38,11 @@ main.post('/str-coords', (req, res) => {
     // }
 
     let keywords = reqStringArr.filter(e => { return e.length > 3 })
+
+    if(keywords.length < 2) {
+        res.status(200).json({ 'error': 1 })
+        return
+    }
     
     if(keywords.length > 2) {
         keywords = [ keywords[0], keywords[keywords.length-1] ]
