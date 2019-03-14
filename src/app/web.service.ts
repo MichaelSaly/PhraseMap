@@ -6,8 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class WebService {
 
-    private baseURL = 'http://localhost:80/requests';
-    // private baseURL = '/requests';
+    // private baseURL = 'http://localhost:80/requests';
+    private baseURL = '/requests';
     
     private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
