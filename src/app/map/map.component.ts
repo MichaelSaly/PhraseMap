@@ -7,7 +7,6 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
 
 import { ErrorDialogComponent } from '.././error-dialog/error-dialog.component'
 import { LinkDialogComponent } from './link-dialog/link-dialog.component'
-import { InfoDialogComponent } from './info-dialog/info-dialog.component'
 import { MatDialog } from '@angular/material'
 
 import { Core } from '../objects/core'

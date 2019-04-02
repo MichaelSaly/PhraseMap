@@ -44,7 +44,6 @@ import { MapComponent } from './map/map.component';
 
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { LinkDialogComponent } from './map/link-dialog/link-dialog.component';
-import { InfoDialogComponent } from './map/info-dialog/info-dialog.component';
 import { HelpDialogComponent } from './help-dialog/help-dialog.component';
 
 @NgModule({
@@ -52,7 +51,6 @@ import { HelpDialogComponent } from './help-dialog/help-dialog.component';
     AppComponent,
     ErrorDialogComponent,
     LinkDialogComponent,
-    InfoDialogComponent,
     HelpDialogComponent,
     SearchComponent,
     BaseComponent,
@@ -77,6 +75,6 @@ import { HelpDialogComponent } from './help-dialog/help-dialog.component';
   ],
   providers: [ WebService, GoogleMapsAPIWrapper, CookieService ],
   bootstrap: [AppComponent],
-  entryComponents: [ ErrorDialogComponent, LinkDialogComponent, HelpDialogComponent, InfoDialogComponent ]
+  entryComponents: [ ErrorDialogComponent, LinkDialogComponent, HelpDialogComponent ]
 })
 export class AppModule { }

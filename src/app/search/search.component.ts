@@ -73,16 +73,22 @@ export class SearchComponent implements OnInit {
     searchByLocation() {
         this.swapButtons()
         navigator.geolocation.getCurrentPosition(pos => {
-            this.webService.onChooseLocation(pos.coords.longitude, pos.coords.latitude).subscribe(res => {
+            if(pos.coords.longitude > -5.353975449429186 || pos.coords.longitude < -10.594453965054186 || pos.coords.latitude > 55.37186727173801 || pos.coords.latitude < 51.47826433287424) {
+                this.openDialog(3)
                 this.swapButtons()
-                if(res["error"] == 0) {
-                    this.loc.emit(res['core']);
-                }
-                else {
-                    this.openDialog(2)
-                }
-            })
-            // this.loc.emit(pos.coords)
+            }
+            else {
+                this.webService.onChooseLocation(pos.coords.longitude, pos.coords.latitude).subscribe(res => {
+                    this.swapButtons()
+                    if(res["error"] == 0) {
+                        this.loc.emit(res['core']);
+                    }
+                    else {
+                        this.openDialog(2)
+                    }
+                })
+                // this.loc.emit(pos.coords)
+            }
         })
     }
 

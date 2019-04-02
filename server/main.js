@@ -24,18 +24,8 @@ console.log("ready")
 
 main.post('/str-coords', (req, res) => {
 
-    let reqStringArr = req.body.phrase.split(' ')
 
-    // reqStringArr.forEach(e => {
-    //     if(!words.includes(e) && !ignoreWords.includes(e)) {
-    //         res.status(200).json({ 'error': 1 })
-    //         return
-    //     }
-    // });
-
-    // if((!words.includes(keywords[0]) || !words.includes(keywords[1])) && (!ignoreWords.includes(keywords[0]) || !ignoreWords.includes(keywords[1]))) {
-    //     res.status(200).json({ 'error': 1 })
-    // }
+    let reqStringArr = req.body.phrase.split(' ');
 
     let keywords = reqStringArr.filter(e => { return e.length > 3 })
 
@@ -52,10 +42,6 @@ main.post('/str-coords', (req, res) => {
         res.status(200).json({ 'error': 1 })
         return
     }
-
-    // if(keywords[0] == keywords[1]) {
-    //     res.status(200).json({ 'error': 1 })
-    // }
 
     console.log("Received request for: " + keywords.toString())
 
@@ -95,6 +81,7 @@ main.post('/coords-str', (req, res) => {
     let realX = Math.round(longitude * -1 * 1000) - 5353 // remove x constraints
     let realY = Math.round(latitude * 1000) - 51478 // remove y constraints
 
+
     let indexSpiral = mapArray[realY][realX]
 
     let key, wordIndexes, index = 0
@@ -115,6 +102,7 @@ main.post('/coords-str', (req, res) => {
     }
     
     let strArr = [ words[wordIndexes.a], words[wordIndexes.b] ] // fill array of the indexes
+
 
     let properLongitude = (realX + 5353) / 1000 * -1 // add longitude constraints
     let properLatitude = (realY + 51478) / 1000 // add latitude constaints
